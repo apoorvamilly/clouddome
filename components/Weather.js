@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, {  Component } from "react";
 import { View, Text, StyleSheet, ToastAndroid, TouchableOpacity, ActivityIndicator } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { API_KEY } from "../utils/WeatherAPIKey";
@@ -10,11 +10,13 @@ import HomeCard from './HomeCard'
 export default class Weather extends Component {
   constructor(props){
     super(props)
+    // bind this context to the functions
     this.onSearch = this.onSearch.bind(this);
     this.fetchWeatherWithCoords = this.fetchWeatherWithCoords.bind(this);
     this.fetchLocationAndWeather = this.fetchLocationAndWeather.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
   }
+  // initialise state with default values
   state = {
     isLoading: true,
     temperature: 0,
@@ -124,32 +126,12 @@ export default class Weather extends Component {
               borderTopWidth: 0,
               backgroundColor: '#e1e8ee'
           }}
+          // when 'enter' button is pressed, fires onendediting event
             onEndEditing={this.onSearch}
             round
           />
 
           <HomeCard detail={this.state.json}/>
-          {/* <View style={styles.headerContainer}>
-            <MaterialCommunityIcons
-              size={72}
-              name={weatherConditions[this.state.weatherCondition].icon}
-              color={"#fff"}
-            />
-            <Text style={styles.tempText}>{this.state.temperature}˚</Text>
-          </View>
-          <View style={styles.bodyContainer}>
-            <MaterialCommunityIcons
-              onPress={()=>this.fetchLocationAndWeather()}
-              size={34}
-              name="map-marker-radius"
-              color={"#fff"}
-            />
-            <Text style={styles.subtitle}>{this.state.place}</Text>
-            <Text style={styles.title}>{weatherConditions[this.state.weatherCondition].title}</Text>
-            <Text style={styles.subtitle}>
-              {weatherConditions[this.state.weatherCondition].subtitle}
-            </Text>
-          </View> */}
           <LocationIcon getLocation={this.fetchLocationAndWeather} color='#303133'/>
         </View>
       );

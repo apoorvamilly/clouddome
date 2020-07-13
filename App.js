@@ -92,10 +92,9 @@ export default class App extends React.Component {
   }
   render() {
     const Tab = createMaterialBottomTabNavigator();
-    const { isLoading, weatherCondition, temperature, id, place } = this.state;
     return (
         <NavigationContainer>
-          <Tab.Navigator shifting>
+          <Tab.Navigator shifting>  {/*shifting - animation on bottom nav */}
             <Tab.Screen
               options={{
                 tabBarLabel: 'Home',
